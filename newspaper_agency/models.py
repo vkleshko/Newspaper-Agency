@@ -21,7 +21,9 @@ class Redactor(AbstractUser):
         ordering = ["username"]
 
     def get_absolute_url(self):
-        return reverse("publisher_tracker:redactor-detail", kwargs={"pk": self.pk})
+        return reverse(
+            "publisher_tracker:redactor-detail", kwargs={"pk": self.pk}
+        )
 
     def __str__(self) -> str:
         return f"{self.username} ({self.first_name} {self.last_name})"
