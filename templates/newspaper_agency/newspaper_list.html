@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% load crispy_forms_filters %}
+
+{% block content %}
+<style>
+      body {
+          background-image: url(/static/img/redactors_newspapers.jpg);
+          padding-top: 150px;
+          margin: 0;
+      }
+
+      #contact-form input {
+          color: #000;
+      }
+
+
+</style>
+
+<div class="container">
+  <div class="row py-4">
+    <div class="col-lg-6">
+      <h1 style="color: #fff">Newspaper List</h1>
+      <h4 style="color: #fff">
+        <strong>
+          Here you can see brief information about all the newspapers on our website. You can create new ones and
+          search for the ones that interest you.
+        </strong>
+      </h4>
+      <br>
+      <a
+          href="#"
+          style=" color: #fff"
+      >
+        Click here to create
+        <i class="fas fa-arrow-right text-sm ms-1"></i>
+      </a>
+    </div>
+    <div class="col-lg-6 mt-lg-0 mt-5 ps-lg-0 ps-0">
+      <div class="p-3 info-horizontal">
+        <form action="" method="get" class="form-inline" id="contact-form">
+          {% csrf_token %}
+          {{ newspapers_search_form|crispy }}
+        </form>
+        <br>
+
+        {% for newspaper in newspaper_list %}
+        <div class="description">
+          <h5 class="mb-0">
+            <a
+                href="{% url 'newspaper_agency:newspaper-detail' pk=newspaper.id %}"
+                style="color: #fff  "
+            >
+              <strong>{{ newspaper.title }}</strong>
+            </a>
+          </h5>
+          <h6 class="mb-0" style="color: #fff">Published date: [{{ newspaper.published_date }}]</h6>
+          <br>
+        </div>
+        {% empty %}
+        <h3 style="color: #fff">No newspapers!</h3>
+        {% endfor %}
+
+        <div style="margin-top: 30px;">
+          {% include "includes/pagination.html" %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
