@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 
-from publisher_tracker.models import Topic, Redactor, Newspaper
+from newspaper_agency.models import Topic, Redactor, Newspaper
 
 
 @admin.register(Redactor)
