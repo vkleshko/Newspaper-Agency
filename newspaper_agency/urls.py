@@ -4,6 +4,7 @@ from newspaper_agency.views import (
     index,
     TopicListView,
     TopicCreatedView,
+    TopicUpdateView,
 )
 
 urlpatterns = [
@@ -21,6 +22,11 @@ urlpatterns = [
         "topics/create/",
         TopicCreatedView.as_view(),
         name="topic-create"
+    ),
+    path(
+        "topics/<int:pk>/update/",
+        TopicUpdateView.as_view(),
+        name="topic-update"
     ),
 ]
 
