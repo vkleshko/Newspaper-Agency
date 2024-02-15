@@ -77,3 +77,31 @@ class NewspapersSearchForm(forms.Form):
             attrs={"placeholder": "Search by title"}
         )
     )
+
+
+class NewspaperForm(forms.ModelForm):
+    topic = forms.ModelChoiceField(
+        queryset=Topic.objects.all(),
+        label="Topic",
+        required=True,
+        widget=forms.Select(
+            attrs={"id": "topic", "style": "background-color: rgba(255, 255, 255, 0.1);"}
+        ),
+    )
+    context = forms.CharField(
+        label="Context",
+        widget=forms.Textarea(
+            attrs={"id": "context", "style": "background-color: rgba(255, 255, 255, 0.1);"}
+
+        ),
+    )
+
+    publishers = forms.ModelMultipleChoiceField(
+        required=False,
+        queryset=get_user_model().objects.all(),
+        widget=forms.CheckboxSelectMultiple,
+    )
+
+    class Meta:
+        model = Newspaper
+        fields = "__all__"
