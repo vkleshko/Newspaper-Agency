@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block content %}
+<style>
+      body {
+          background-image: url(/static/img/redactors_newspapers.jpg);
+          background-size: cover;
+          padding-top: 150px;
+          margin: 0;
+      }
+
+</style>
+<div class="container">
+
+  <div>
+    <button
+        type="button"
+        class="btn bg-gradient-light w-auto me-1 mb-0"
+    >
+      <a href="{% url 'newspaper_agency:redactor-update' pk=redactor.id %}"
+      >Update</a>
+    </button>
+
+    <button
+        type="button"
+        class="btn bg-gradient-light w-auto me-1 mb-0"
+    >
+      <a href="{% url 'newspaper_agency:redactor-delete' pk=redactor.id %}"
+      >Delete</a>
+    </button>
+  </div>
+
+  <div>
+    <div class="page-header min-vh-50">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-lg-6 col-md-7 d-flex justify-content-center flex-column">
+            <h1 style="color: #fff">{{ redactor.username }}</h1>
+            <h3 class="mb-4" style="color: #fff">{{ redactor.first_name }} {{ redactor.last_name }}</h3>
+            <h4 class="mb-4" style="color: #fff">
+              Years of experience: {{ redactor.years_of_experience }}<br>
+              Is staff: {{ redactor.is_staff }}<br>
+              Number of published newspapers {{ redactor.newspapers.count }}
+            </h4>
+            <div class="buttons">
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+{% endblock %}
