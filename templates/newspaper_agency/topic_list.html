@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+{% load crispy_forms_filters %}
+
+{% block content %}
+<style>
+      body {
+          background-image: url(/static/img/topics/topic.png);
+          padding-top: 150px;
+          margin: 0;
+      }
+
+      #contact-form input {
+          color: #000;
+      }
+
+</style>
+
+<div class="container">
+  <div class="row py-4">
+    <div class="col-lg-6">
+      <h1 style="color: #fff">
+        Topic List
+      </h1>
+      <h4 style="color: #fff">
+        Here you can see brief information about all the topics that are on our website. You can create new ones
+        and search for the ones that interest you.
+      </h4>
+      <br>
+      <a href="{% url 'publisher_tracker:topic-create' %}" style="color: #fff"
+      >
+        Click here to create
+        <i class="fas fa-arrow-right text-sm ms-1"></i>
+      </a>
+    </div>
+
+    {% block inner %}
+    <div class="col-lg-6 mt-lg-0 mt-5 ps-lg-0 ps-0">
+      <div class="p-3 info-horizontal">
+        <form action="" method="get" class="form-inline" id="contact-form">
+          {% csrf_token %}
+          {{ topic_search|crispy }}
+        </form>
+        <br>
+
+        {% for topic in topic_list %}
+        <div class="description">
+          <div class="mb-0 topics" style="display: flex; align-items: center; justify-content: space-between">
+            <h5 style="color: #fff">{{ topic.name }}</h5>
+            <div style="float: right">
+              <button
+                  type="button"
+                  class="btn bg-gradient-light w-auto me-1 mb-0"
+              >
+                <a href="{% url 'publisher_tracker:topic-update' pk=topic.id %}"
+                >Update
+                </a>
+              </button>
+
+              <button
+                  type="button"
+                  class="btn bg-gradient-light w-auto me-1 mb-0"
+              >
+                <a href="{% url 'publisher_tracker:topic-delete' pk=topic.id %}"
+                >Delete
+                </a>
+              </button>
+            </div>
+          </div>
+          <br>
+        </div>
+        {% empty %}
+        <h3 style="color: #fff">No Topics!</h3>
+        {% endfor %}
+
+        <div style="margin-top: 30px;">
+          {% block pagination %}
+          {% include "includes/pagination.html" %}
+          {% endblock %}
+        </div>
+      </div>
+    </div>
+    {% endblock %}
+  </div>
+</div>
+{% endblock %}
