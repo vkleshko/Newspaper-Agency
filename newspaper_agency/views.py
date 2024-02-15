@@ -9,7 +9,8 @@ from django.views import generic
 from newspaper_agency.forms import (
     TopicSearchForm,
     RedactorSearchForm,
-    RedactorCreationForm
+    RedactorCreationForm,
+    RedactorYearOfExperienceUpdateForm
 )
 
 from newspaper_agency.models import Topic, Newspaper, Redactor
@@ -106,3 +107,9 @@ class RedactorDetailView(generic.DeleteView):
 class RedactorCreatedView(generic.CreateView):
     model = Redactor
     form_class = RedactorCreationForm
+
+
+class RedactorYearOfExperienceUpdateView(generic.UpdateView):
+    model = Redactor
+    form_class = RedactorYearOfExperienceUpdateForm
+    template_name = "publisher_tracker/redactor_form.html"
