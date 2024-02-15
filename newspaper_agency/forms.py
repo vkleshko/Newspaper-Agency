@@ -66,3 +66,14 @@ class RedactorYearOfExperienceUpdateForm(forms.ModelForm):
         widget=forms.TextInput(attrs={'id': 'years_of_experience'}),
         validators=[validate_years_of_experience],
     )
+
+
+class NewspapersSearchForm(forms.Form):
+    title = forms.CharField(
+        max_length=255,
+        required=False,
+        label="",
+        widget=forms.TextInput(
+            attrs={"placeholder": "Search by title"}
+        )
+    )
