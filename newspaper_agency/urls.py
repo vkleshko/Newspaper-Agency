@@ -5,6 +5,7 @@ from newspaper_agency.views import (
     TopicListView,
     TopicCreatedView,
     TopicUpdateView,
+    TopicDeleteView,
 )
 
 urlpatterns = [
@@ -27,6 +28,11 @@ urlpatterns = [
         "topics/<int:pk>/update/",
         TopicUpdateView.as_view(),
         name="topic-update"
+    ),
+    path(
+        "topics/<int:pk>/delete/",
+        TopicDeleteView.as_view(),
+        name="topic-delete"
     ),
 ]
 
