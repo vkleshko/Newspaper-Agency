@@ -140,3 +140,16 @@ class NewspapersListView(generic.ListView):
         )
 
         return context
+
+    def get_queryset(self):
+        queryset = Newspaper.objects.select_related("topic")
+        form = NewspapersSearchForm(self.request.GET)
+        if form.is_valid():
+            return queryset.filter(
+                title__icontains=form.cleaned_data["title"]
+            )
+
+
+class NewspapersDetailView(generic.DeleteView):
+    model = Newspaper
+    template_name = "newspaper_agency/newspapers_detail.html"
