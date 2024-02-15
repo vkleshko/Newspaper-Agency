@@ -10,7 +10,8 @@ from newspaper_agency.forms import (
     TopicSearchForm,
     RedactorSearchForm,
     RedactorCreationForm,
-    RedactorYearOfExperienceUpdateForm
+    RedactorYearOfExperienceUpdateForm,
+    NewspapersSearchForm
 )
 
 from newspaper_agency.models import Topic, Newspaper, Redactor
@@ -123,3 +124,19 @@ class RedactorYearOfExperienceUpdateView(generic.UpdateView):
 class RedactorDeleteUpdateView(generic.DeleteView):
     model = Redactor
     success_url = reverse_lazy("newspaper_agency:redactor-list")
+
+
+class NewspapersListView(generic.ListView):
+    model = Newspaper
+    template_name = "newspaper_agency/newspaper_list.html"
+    context_object_name = "newspaper_list"
+    paginate_by = 5
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super(NewspapersListView, self).get_context_data(**kwargs)
+        title = self.request.GET.get("title", "")
+        context["newspapers_search_form"] = NewspapersSearchForm(
+            initial={"title": title}
+        )
+
+        return context
