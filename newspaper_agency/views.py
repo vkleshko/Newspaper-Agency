@@ -112,4 +112,14 @@ class RedactorCreatedView(generic.CreateView):
 class RedactorYearOfExperienceUpdateView(generic.UpdateView):
     model = Redactor
     form_class = RedactorYearOfExperienceUpdateForm
-    template_name = "publisher_tracker/redactor_form.html"
+    template_name = "newspaper_agency/redactor_form.html"
+
+    def get_success_url(self):
+        return reverse_lazy(
+            "newspaper_agency:redactor-detail", kwargs={"pk": self.object.id}
+        )
+
+
+class RedactorDeleteUpdateView(generic.DeleteView):
+    model = Redactor
+    success_url = reverse_lazy("newspaper_agency:redactor-list")
