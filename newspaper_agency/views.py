@@ -9,7 +9,6 @@ from django.views import generic
 from newspaper_agency.models import Topic, Newspaper, Redactor
 
 
-@login_required
 def index(request):
     topics = Topic.objects.count()
     newspapers = Newspaper.objects.count()

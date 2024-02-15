@@ -1,4 +1,3 @@
-from django.conf import settings
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 from django.urls import reverse
@@ -22,7 +21,7 @@ class Redactor(AbstractUser):
 
     def get_absolute_url(self):
         return reverse(
-            "publisher_tracker:redactor-detail", kwargs={"pk": self.pk}
+            "newspaper_agency:redactor-detail", kwargs={"pk": self.pk}
         )
 
     def __str__(self) -> str:
@@ -35,7 +34,7 @@ class Newspaper(models.Model):
     published_date = models.DateTimeField(auto_now=True)
     topic = models.ForeignKey(
         Topic,
-        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
         related_name="newspapers"
     )
 
@@ -43,7 +42,7 @@ class Newspaper(models.Model):
         ordering = ["title"]
 
     def get_absolute_url(self):
-        return reverse("publisher_tracker:newspaper-list")
+        return reverse("newspaper_agency:newspaper-list")
 
     def __str__(self) -> str:
         return f"{self.title} {self.context} {self.topic}"
