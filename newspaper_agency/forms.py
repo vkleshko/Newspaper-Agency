@@ -53,3 +53,16 @@ class RedactorCreationForm(UserCreationForm):
         widget=forms.TextInput(attrs={'id': 'years_of_experience'}),
         validators=[validate_years_of_experience],
     )
+
+
+class RedactorYearOfExperienceUpdateForm(forms.ModelForm):
+    class Meta(UserCreationForm.Meta):
+        model = Redactor
+        fields = ["years_of_experience"]
+
+    years_of_experience = forms.IntegerField(
+        label="Years of Experience",
+        required=True,
+        widget=forms.TextInput(attrs={'id': 'years_of_experience'}),
+        validators=[validate_years_of_experience],
+    )
