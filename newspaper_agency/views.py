@@ -24,4 +24,4 @@ def index(request):
         "num_visits": num_visits + 1,
     }
 
-    return render(request, "publisher_tracker/index.html", context=context)
+    return render(request, "newspaper_agency/index.html", context=context)
