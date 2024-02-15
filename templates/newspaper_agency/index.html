@@ -1,0 +1,245 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<header class="header-2">
+    <div class="page-header min-vh-75 relative"
+         style="background-image: url('{% static 'img/home_page.jpg' %}')">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-7 text-center mx-auto">
+                    <h1 class="pt-3 mt-n7" style="color: #17202A">
+                        PUBLISHER TRACKER
+                    </h1>
+                    <h3 style="color: #17202A">A System for Tracking Editors</h3>
+                    <h3 style="color: #17202A">You have visited this page
+                        {{ num_visits }} time{{ num_visits|pluralize }}.
+                    </h3>
+                </div>
+            </div>
+        </div>
+
+        <div class="position-absolute w-100 z-index-1 bottom-0">
+            <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                 viewBox="0 24 150 40" preserveAspectRatio="none" shape-rendering="auto">
+                <defs>
+                    <path id="gentle-wave"
+                          d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z"/>
+                </defs>
+                <g class="moving-waves">
+                    <use xlink:href="#gentle-wave" x="48" y="-1" fill="rgba(255,255,255,0.40"/>
+                    <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(255,255,255,0.35)"/>
+                    <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(255,255,255,0.25)"/>
+                    <use xlink:href="#gentle-wave" x="48" y="8" fill="rgba(255,255,255,0.20)"/>
+                    <use xlink:href="#gentle-wave" x="48" y="13" fill="rgba(255,255,255,0.15)"/>
+                    <use xlink:href="#gentle-wave" x="48" y="16" fill="rgba(255,255,255,0.95"/>
+                </g>
+            </svg>
+        </div>
+    </div>
+</header>
+
+
+<section class="pt-3 pb-4" id="count-stats">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-9 z-index-2 border-radius-xl mt-n10 mx-auto py-4 blur shadow-blur">
+                <div class="row">
+                    <div class="col-md-4 position-relative">
+                        <div class="p-3 text-center">
+                            <h1 class="text-gradient text-primary"><span id="state1" countTo="6">{{ num_topics }}</span>
+                            </h1>
+                            <h5 class="mt-3">Topics</h5>
+                            <p class="text-sm">With the help of our site, you can easily follow current topics. We
+                                select the most
+                                interesting thematic articles from various sources and offer them to you in one
+                                convenient resource.
+                                More importantly, you can actively participate in shaping this content by adding topics
+                                that interest
+                                you and even editing them to ensure relevance and interest.</p>
+                        </div>
+                        <hr class="vertical dark">
+                    </div>
+                    <div class="col-md-4 position-relative">
+                        <div class="p-3 text-center">
+                            <h1 class="text-gradient text-primary"><span id="state2">{{ num_redactors }}</span></h1>
+                            <h5 class="mt-3">Redactors</h5>
+                            <p class="text-sm">On our site, all users can become editors with the ability to add
+                                newspapers and
+                                publications to their profile. We present profiles of these user editors, allowing you
+                                to get to know
+                                their personal views and approaches to work.</p>
+                        </div>
+                        <hr class="vertical dark">
+                    </div>
+                    <div class="col-md-4">
+                        <div class="p-3 text-center">
+                            <h1 class="text-gradient text-primary" id="state3">{{ num_newspapers }}</h1>
+                            <h5 class="mt-3">Newspapers</h5>
+                            <p class="text-sm">We collect information about various newspapers and publications produced
+                                by various
+                                publishers. You can learn about the variety of sources and view their articles on our
+                                website.
+                                Importantly, you have the ability to add new newspapers, edit information about them and
+                                delete them,
+                                creating content that suits your needs and interests.</p>
+                        </div>
+                        <hr class="vertical dark">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<footer class="footer pt-5 mt-5">
+    <hr class="horizontal dark mb-5">
+    <div class="container">
+        <div class=" row">
+            <div class="col-md-3 mb-4 ms-auto">
+                <div>
+                    <h6 class="text-gradient text-primary font-weight-bolder">Publisher Tracker System</h6>
+                </div>
+                <div>
+                    <h6 class="mt-3 mb-2 opacity-8">Social</h6>
+                    <ul class="d-flex flex-row ms-n3 nav">
+                        <li class="nav-item">
+                            <a class="nav-link pe-1" href="#" target="_blank">
+                                <i class="fab fa-facebook text-lg opacity-8" aria-hidden="true"></i>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link pe-1" href="#" target="_blank">
+                                <i class="fab fa-twitter text-lg opacity-8" aria-hidden="true"></i>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link pe-1" href="#" target="_blank">
+                                <i class="fab fa-dribbble text-lg opacity-8" aria-hidden="true"></i>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link pe-1" href="#" target="_blank">
+                                <i class="fab fa-github text-lg opacity-8" aria-hidden="true"></i>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link pe-1" href="#"
+                               target="_blank">
+                                <i class="fab fa-youtube text-lg opacity-8" aria-hidden="true"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-2 col-sm-6 col-6 mb-4">
+                <div>
+                    <h6 class="text-gradient text-primary text-sm">Company</h6>
+                    <ul class="flex-column ms-n3 nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" target="_blank">
+                                About Us
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" target="_blank">
+                                Freebies
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" target="_blank">
+                                Premium Tools
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" target="_blank">
+                                Blog
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-2 col-sm-6 col-6 mb-4">
+                <div>
+                    <h6 class="text-gradient text-primary text-sm">Resources</h6>
+                    <ul class="flex-column ms-n3 nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" target="_blank">
+                                Illustrations
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" target="_blank">
+                                Bits &amp; Snippets
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" target="_blank">
+                                Affiliate Program
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-2 col-sm-6 col-6 mb-4">
+                <div>
+                    <h6 class="text-gradient text-primary text-sm">Help &amp; Support</h6>
+                    <ul class="flex-column ms-n3 nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" target="_blank">
+                                Contact Us
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" target="_blank">
+                                Knowledge Center
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" target="_blank">
+                                Custom Development
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" target="_blank">
+                                Sponsorships
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-2 col-sm-6 col-6 mb-4 me-auto">
+                <div>
+                    <h6 class="text-gradient text-primary text-sm">Legal</h6>
+                    <ul class="flex-column ms-n3 nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" target="_blank">
+                                Terms &amp; Conditions
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" target="_blank">
+                                Privacy Policy
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" target="_blank">
+                                Licenses (EULA)
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="text-center">
+                    <p class="my-4 text-sm">
+                        Publisher Tracker - 2023
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+{% endblock %}
