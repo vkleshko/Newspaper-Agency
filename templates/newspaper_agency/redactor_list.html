@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% load crispy_forms_filters %}
+
+{% block content %}
+<style>
+      body {
+          background-image: url(/static/img/redactors_newspapers.jpg);
+          background-size: cover;
+          padding-top: 150px;
+          margin: 0;
+      }
+
+      #contact-form input {
+          color: #000;
+      }
+
+</style>
+<div class="container">
+  <div class="row py-4">
+    <div class="col-lg-6">
+      <h1 style="color: #fff">Redactor List</h1>
+      <h4 style="color: #fff">Here you can view brief information about the redactors that are on our site. You can
+        create new ones and
+        search for them by username.</h4>
+      <a href="#" style="color: #fff">
+        Click here to create
+        <i class="fas fa-arrow-right text-sm ms-1"></i>
+      </a>
+    </div>
+
+    {% block inner %}
+    <div class="col-lg-6 mt-lg-0 mt-5 ps-lg-0 ps-0">
+      <div class="p-3 info-horizontal">
+        <form action="" method="get" class="form-inline" id="contact-form">
+          {% csrf_token %}
+          {{ redactor_search_form|crispy }}
+        </form>
+        <br>
+
+        {% for redactor in redactor_list %}
+        <div class="description">
+          <h3>
+            <a href="{% url 'newspaper_agency:redactor-detail' pk=redactor.id %}" style="color: #fff">
+              Username: {{ redactor.username }}
+            </a>
+          </h3>
+          <h4 style="color: #fff">Full name: {{ redactor.first_name }} {{ redactor.last_name }}</h4>
+
+          <h4 class="mb-0" style="color: #fff">Years of
+            experience: {{ redactor.years_of_experience }}</h4>
+          <br>
+        </div>
+        {% empty %}
+        <h3 style="color: #fff">No Redactors!</h3>
+        {% endfor %}
+
+        <div style="margin-top: 30px;">
+          {% block pagination %}
+          {% include "includes/pagination.html" %}
+          {% endblock %}
+        </div>
+      </div>
+    </div>
+    {% endblock %}
+  </div>
+</div>
+{% endblock %}
