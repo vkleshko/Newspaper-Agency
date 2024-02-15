@@ -11,7 +11,8 @@ from newspaper_agency.forms import (
     RedactorSearchForm,
     RedactorCreationForm,
     RedactorYearOfExperienceUpdateForm,
-    NewspapersSearchForm
+    NewspapersSearchForm,
+    NewspaperForm
 )
 
 from newspaper_agency.models import Topic, Newspaper, Redactor
@@ -153,3 +154,9 @@ class NewspapersListView(generic.ListView):
 class NewspapersDetailView(generic.DeleteView):
     model = Newspaper
     template_name = "newspaper_agency/newspapers_detail.html"
+
+
+class NewspapersCreateView(generic.CreateView):
+    model = Newspaper
+    form_class = NewspaperForm
+    template_name = "newspaper_agency/newspaper_form.html"
