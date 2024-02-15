@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+
+{% block content %}
+<style>
+      body {
+          background-image: url(/static/img/redactors_newspapers.jpg);
+          background-size: cover;
+          padding-top: 150px;
+          margin: 0;
+      }
+
+</style>
+
+<div class="container">
+
+  <div style="float: right">
+
+    <button
+        type="button"
+        class="btn bg-gradient-light w-auto me-1 mb-0"
+    >
+      <a href="{% url 'publisher_tracker:newspaper-update' pk=newspaper.id %}"
+         class="text-black-50"
+      >Update</a>
+    </button>
+
+    <button
+        type="button"
+        class="btn bg-gradient-light w-auto me-1 mb-0"
+    >
+      <a href="{% url 'publisher_tracker:newspaper-delete' pk=newspaper.id %}"
+         class="text-black-50"
+      >
+        Delete
+      </a>
+    </button>
+  </div>
+
+  <div class="row py-4" style="color: #fff">
+    <div class="col-lg-10">
+      <h1 class="mt-2" style="color: #fff">{{ newspaper.title }}</h1>
+      <br>
+      <h3 style="color: #fff">{{ newspaper.context }}</h3>
+      <br>
+      <h5 style="color: #fff">Was published at {{ newspaper.published_date }}</h5>
+      <h5 style="color: #fff">Topic: {{ newspaper.topic.name }}</h5>
+    </div>
+
+    <ul>
+      <div class="col-lg-6 mt-lg-0 mt-5 ps-lg-0 ps-0">
+        <h5 style="color: #fff">
+          Redactors
+          {% if not newspaper in user.newspapers.all %}
+          <button type="button" class="btn bg-gradient-light w-auto me-1 mb-0" style="float: right">
+            <a href="{% url 'publisher_tracker:toggle-assign-to-newspaper' pk=newspaper.id %}">
+              Assign me to this newspaper
+            </a>
+          </button>
+          {% else %}
+          <button type="button" class="btn bg-gradient-light w-auto me-1 mb-0" style="float: right">
+            <a href="{% url 'publisher_tracker:toggle-assign-to-newspaper' pk=newspaper.id %}">
+              Delete me from this newspaper
+            </a>
+          </button>
+          {% endif %}
+        </h5>
+        {% for publisher in newspaper.publishers.all %}
+        <div class="p-1 info-horizontal">
+          <div class="description ps-3">
+            <p class="mb-0">
+              <a href="{% url 'publisher_tracker:redactor-detail' pk=publisher.id %}"
+                 style="color: #fff"
+              >
+                <strong>{{ publisher.username }}</strong></a>
+              <strong>{{ publisher.first_name }} {{ publisher.last_name }}</strong>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      {% empty %}
+      <p>No Redactors</p>
+      {% endfor %}
+    </ul>
+
+  </div>
+</div>
+
+{% endblock %}
