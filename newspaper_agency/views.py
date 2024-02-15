@@ -56,3 +56,9 @@ class TopicCreatedView(generic.CreateView):
     model = Topic
     fields = "__all__"
     success_url = reverse_lazy("newspaper_agency:topic-list")
+
+
+class TopicUpdateView(LoginRequiredMixin, generic.UpdateView):
+    model = Topic
+    fields = "__all__"
+    success_url = reverse_lazy("newspaper_agency:topic-list")
