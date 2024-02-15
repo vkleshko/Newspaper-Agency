@@ -95,3 +95,8 @@ class RedactorListView(generic.ListView):
                 username__icontains=form.cleaned_data["username"]
             )
         return queryset
+
+
+class RedactorDetailView(generic.DeleteView):
+    model = Redactor
+    template_name = "newspaper_agency/redactor_detail.html"
