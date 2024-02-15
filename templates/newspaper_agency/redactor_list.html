@@ -13,7 +13,6 @@
       #contact-form input {
           color: #000;
       }
-
 </style>
 <div class="container">
   <div class="row py-4">
@@ -22,7 +21,7 @@
       <h4 style="color: #fff">Here you can view brief information about the redactors that are on our site. You can
         create new ones and
         search for them by username.</h4>
-      <a href="#" style="color: #fff">
+      <a href="{% url 'newspaper_agency:redactor-create' %}" style="color: #fff">
         Click here to create
         <i class="fas fa-arrow-right text-sm ms-1"></i>
       </a>
