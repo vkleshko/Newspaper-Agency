@@ -18,6 +18,7 @@ from newspaper_agency.forms import (
 from newspaper_agency.models import Topic, Newspaper, Redactor
 
 
+@login_required
 def index(request):
     topics = Topic.objects.count()
     newspapers = Newspaper.objects.count()
@@ -35,7 +36,7 @@ def index(request):
     return render(request, "newspaper_agency/index.html", context=context)
 
 
-class TopicListView(generic.ListView):
+class TopicListView(LoginRequiredMixin, generic.ListView):
     model = Topic
     context_object_name = "topic_list"
     template_name = "newspaper_agency/topic_list.html"
@@ -59,24 +60,24 @@ class TopicListView(generic.ListView):
         return queryset
 
 
-class TopicCreatedView(generic.CreateView):
+class TopicCreatedView(LoginRequiredMixin, generic.CreateView):
     model = Topic
     fields = "__all__"
     success_url = reverse_lazy("newspaper_agency:topic-list")
 
 
-class TopicUpdateView(generic.UpdateView):
+class TopicUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = Topic
     fields = "__all__"
     success_url = reverse_lazy("newspaper_agency:topic-list")
 
 
-class TopicDeleteView(generic.DeleteView):
+class TopicDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = Topic
     success_url = reverse_lazy("newspaper_agency:topic-list")
 
 
-class RedactorListView(generic.ListView):
+class RedactorListView(LoginRequiredMixin, generic.ListView):
     model = Redactor
     context_object_name = "redactor_list"
     template_name = "newspaper_agency/redactor_list.html"
@@ -101,17 +102,17 @@ class RedactorListView(generic.ListView):
         return queryset
 
 
-class RedactorDetailView(generic.DeleteView):
+class RedactorDetailView(LoginRequiredMixin, generic.DeleteView):
     model = Redactor
     template_name = "newspaper_agency/redactor_detail.html"
 
 
-class RedactorCreatedView(generic.CreateView):
+class RedactorCreatedView(LoginRequiredMixin, generic.CreateView):
     model = Redactor
     form_class = RedactorCreationForm
 
 
-class RedactorYearOfExperienceUpdateView(generic.UpdateView):
+class RedactorYearOfExperienceUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = Redactor
     form_class = RedactorYearOfExperienceUpdateForm
     template_name = "newspaper_agency/redactor_form.html"
@@ -122,12 +123,12 @@ class RedactorYearOfExperienceUpdateView(generic.UpdateView):
         )
 
 
-class RedactorDeleteUpdateView(generic.DeleteView):
+class RedactorDeleteUpdateView(LoginRequiredMixin, generic.DeleteView):
     model = Redactor
     success_url = reverse_lazy("newspaper_agency:redactor-list")
 
 
-class NewspapersListView(generic.ListView):
+class NewspapersListView(LoginRequiredMixin, generic.ListView):
     model = Newspaper
     template_name = "newspaper_agency/newspaper_list.html"
     context_object_name = "newspaper_list"
@@ -151,18 +152,18 @@ class NewspapersListView(generic.ListView):
             )
 
 
-class NewspapersDetailView(generic.DeleteView):
+class NewspapersDetailView(LoginRequiredMixin, generic.DeleteView):
     model = Newspaper
     template_name = "newspaper_agency/newspapers_detail.html"
 
 
-class NewspapersCreateView(generic.CreateView):
+class NewspapersCreateView(LoginRequiredMixin, generic.CreateView):
     model = Newspaper
     form_class = NewspaperForm
     template_name = "newspaper_agency/newspaper_form.html"
 
 
-class NewspapersUpdateView(generic.UpdateView):
+class NewspapersUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = Newspaper
     form_class = NewspaperForm
 
@@ -173,11 +174,12 @@ class NewspapersUpdateView(generic.UpdateView):
         )
 
 
-class NewspapersDeleteView(generic.DeleteView):
+class NewspapersDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = Newspaper
     success_url = reverse_lazy("newspaper_agency:newspaper-list")
 
 
+@login_required
 def toggle_assign_to_newspaper(request, pk):
     redactor = Redactor.objects.get(id=request.user.id)
     if Newspaper.objects.get(id=pk) in redactor.newspapers.all():
