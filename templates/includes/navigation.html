@@ -50,19 +50,16 @@
           <div class="dropdown-menu dropdown-menu-animation dropdown-xl p-3 border-radius-xl mt-0 mt-lg-3"
                aria-labelledby="dropdownMenuPages2">
             <div class="d-none d-lg-block">
-              <a href="#" class="dropdown-item border-radius-md">
-                {% if user.is_authenticated %}
-                <a href="{% url 'logout' %}" class="dropdown-item border-radius-md">
-                  Logged out
-                </a>
-                {% else %}
-                <a href="{% url 'login' %}" class="dropdown-item border-radius-md">
-                  Sign In
-                </a>
-                {% endif %}
-
-              </a>
+              {% if user.is_authenticated %}
+              <form method="post" action="{% url 'logout' %}">
+                {% csrf_token %}
+                <button type="submit" class="dropdown-item border-radius-md">Logged Out</button>
+              </form>
+              {% else %}
+              <a href="{% url 'login' %}" class="dropdown-item border-radius-md">Sign In</a>
+              {% endif %}
             </div>
+
 
           </div>
         </li>
