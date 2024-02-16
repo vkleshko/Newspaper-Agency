@@ -15,7 +15,8 @@ from newspaper_agency.views import (
     NewspapersDetailView,
     NewspapersCreateView,
     NewspapersUpdateView,
-    NewspapersDeleteView
+    NewspapersDeleteView,
+    toggle_assign_to_newspaper
 )
 
 urlpatterns = [
@@ -94,6 +95,11 @@ urlpatterns = [
         NewspapersDeleteView.as_view(),
         name="newspaper-delete"
     ),
+    path(
+        "newspapers/<int:pk>/toggle-assign/",
+        toggle_assign_to_newspaper,
+        name="toggle-assign-to-newspaper"
+    )
 ]
 
 app_name = "newspaper_agency"
