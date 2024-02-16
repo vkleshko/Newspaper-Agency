@@ -19,7 +19,7 @@
         type="button"
         class="btn bg-gradient-light w-auto me-1 mb-0"
     >
-      <a href="{% url 'publisher_tracker:newspaper-update' pk=newspaper.id %}"
+      <a href="{% url 'newspaper_agency:newspaper-update' pk=newspaper.id %}"
          class="text-black-50"
       >Update</a>
     </button>
@@ -28,7 +28,7 @@
         type="button"
         class="btn bg-gradient-light w-auto me-1 mb-0"
     >
-      <a href="{% url 'publisher_tracker:newspaper-delete' pk=newspaper.id %}"
+      <a href="{% url 'newspaper_agency:newspaper-delete' pk=newspaper.id %}"
          class="text-black-50"
       >
         Delete
@@ -52,13 +52,13 @@
           Redactors
           {% if not newspaper in user.newspapers.all %}
           <button type="button" class="btn bg-gradient-light w-auto me-1 mb-0" style="float: right">
-            <a href="{% url 'publisher_tracker:toggle-assign-to-newspaper' pk=newspaper.id %}">
+            <a href="{% url 'newspaper_agency:toggle-assign-to-newspaper' pk=newspaper.id %}">
               Assign me to this newspaper
             </a>
           </button>
           {% else %}
           <button type="button" class="btn bg-gradient-light w-auto me-1 mb-0" style="float: right">
-            <a href="{% url 'publisher_tracker:toggle-assign-to-newspaper' pk=newspaper.id %}">
+            <a href="{% url 'newspaper_agency:toggle-assign-to-newspaper' pk=newspaper.id %}">
               Delete me from this newspaper
             </a>
           </button>
@@ -68,7 +68,7 @@
         <div class="p-1 info-horizontal">
           <div class="description ps-3">
             <p class="mb-0">
-              <a href="{% url 'publisher_tracker:redactor-detail' pk=publisher.id %}"
+              <a href="{% url 'newspaper_agency:redactor-detail' pk=publisher.id %}"
                  style="color: #fff"
               >
                 <strong>{{ publisher.username }}</strong></a>

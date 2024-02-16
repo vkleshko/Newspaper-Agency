@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block content %}
+<style>
+      body {
+          background-image: url(/static/img/redactors_newspapers.jpg);
+          background-size: cover;
+          padding-top: 150px;
+          margin: 0;
+      }
+
+</style>
+<div>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-6 col-md-7 d-flex justify-content-center flex-column">
+        <h1 style="color: #fff">Delete Newspaper?</h1>
+        <h3 style="color: #fff">Are you sure you want to delete?</h3>
+        <p class="lead pe-5 me-5" style="color: #fff">If you delete this newspaper, you will not be able to get it
+          back, so think
+          carefully if it is really necessary.</p>
+        <div class="buttons">
+          <form action="" method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn bg-gradient-danger w-auto me-1 mb-0">Delete</button>
+            <button type="button" class="btn bg-gradient-light w-auto me-1 mb-0" style="margin-left: 20px;">
+              <a href="{% url 'newspaper_agency:newspaper-detail' pk=newspaper.id %}"
+                 class="text-black-50"
+              >
+                No i don't want to delete
+              </a>
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
