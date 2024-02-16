@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block content %}
+<style>
+      body {
+          padding-top: 80px;
+          margin: 0;
+          overflow: hidden;
+      }
+
+      .image-container {
+          text-align: center;
+      }
+
+      .responsive-image {
+          max-width: 100%;
+          height: auto;
+      }
+</style>
+
+<header>
+  <div class="page-header section-height-100">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6 col-md-7 d-flex justify-content-center flex-column">
+          <h1 class="text-gradient text-primary">Logged out</h1>
+          <h1 class="mb-4">Successful logged out</h1>
+          <p class="lead pe-5 me-5">If you want to log in, click the button below</p>
+          <div class="buttons">
+            <button type="button" class="btn bg-gradient-primary mt-4">
+              <a href="{% url 'login' %}" style="color: #fff">Log in</a>
+            </button>
+          </div>
+        </div>
+        <div class="col-lg-6 col-md-5">
+          <div class="image-container">
+            <img src="https://appsrv1-147a1.kxcdn.com/soft-ui-design-v1.0.1/img/curved-images/curved11.jpg"
+                 alt="Background Image" class="responsive-image">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+{% endblock %}
