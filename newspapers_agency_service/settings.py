@@ -76,6 +76,8 @@ WSGI_APPLICATION = "newspapers_agency_service.wsgi.application"
 
 AUTH_USER_MODEL = "newspaper_agency.Redactor"
 
+LOGIN_REDIRECT_URL = "/"
+
 INTERNAL_IPS = [
     "127.0.0.1",
 ]
