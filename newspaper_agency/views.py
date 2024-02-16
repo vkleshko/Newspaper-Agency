@@ -160,3 +160,14 @@ class NewspapersCreateView(generic.CreateView):
     model = Newspaper
     form_class = NewspaperForm
     template_name = "newspaper_agency/newspaper_form.html"
+
+
+class NewspapersUpdateView(generic.UpdateView):
+    model = Newspaper
+    form_class = NewspaperForm
+
+    def get_success_url(self):
+        return reverse_lazy(
+            "newspaper_agency:newspaper-detail",
+            kwargs={"pk": self.object.id}
+        )
