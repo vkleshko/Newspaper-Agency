@@ -171,3 +171,8 @@ class NewspapersUpdateView(generic.UpdateView):
             "newspaper_agency:newspaper-detail",
             kwargs={"pk": self.object.id}
         )
+
+
+class NewspapersDeleteView(generic.DeleteView):
+    model = Newspaper
+    success_url = reverse_lazy("newspaper_agency:newspaper-list")
