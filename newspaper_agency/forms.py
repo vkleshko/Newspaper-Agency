@@ -13,7 +13,8 @@ def validate_years_of_experience(years_of_experience):
         )
     elif not (0 <= years_of_experience <= 100):
         raise ValidationError(
-            f"Work experience should be in the range from 0 to 100, not {years_of_experience}"
+            "Work experience should be in the "
+            f"range from 0 to 100, not {years_of_experience}"
         )
     return years_of_experience
 
@@ -85,13 +86,19 @@ class NewspaperForm(forms.ModelForm):
         label="Topic",
         required=True,
         widget=forms.Select(
-            attrs={"id": "topic", "style": "background-color: rgba(255, 255, 255, 0.1);"}
+            attrs={
+                "id": "topic",
+                "style": "background-color: rgba(255, 255, 255, 0.1);"
+            }
         ),
     )
     context = forms.CharField(
         label="Context",
         widget=forms.Textarea(
-            attrs={"id": "context", "style": "background-color: rgba(255, 255, 255, 0.1);"}
+            attrs={
+                "id": "context",
+                "style": "background-color: rgba(255, 255, 255, 0.1);"
+            }
 
         ),
     )
