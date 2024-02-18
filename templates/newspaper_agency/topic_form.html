@@ -2,7 +2,7 @@
 {% load crispy_forms_filters %}
 
 {% block content %}
-  <style>
+<style>
       body {
           background-image: url(/static/img/topics/topic.png);
           background-size: cover;
@@ -13,28 +13,32 @@
       #contact-form label {
           color: #fff;
       }
-  </style>
-  <section>
-    <div class="container py-4">
-      <div class="row">
-        <div class="col-lg-7 mx-auto d-flex justify-content-center flex-column">
-          <h3 class="text-center" style="color: #fff">
-            {{ object|yesno:"Update,Create" }} topic
-          </h3>
-          <form action="" id="contact-form" method="post" novalidate>
-            <div class="card-body">
-              {% csrf_token %}
-              {{ form|crispy }}
-              <div class="col-md-12">
-                <button type="submit" class="btn bg-gradient-dark w-100">
-                  {{ object|yesno:"Update,Create" }}
-                </button>
-              </div>
+
+      #contact-form input {
+          color: #000;
+      }
+</style>
+<section>
+  <div class="container py-4">
+    <div class="row">
+      <div class="col-lg-7 mx-auto d-flex justify-content-center flex-column">
+        <h3 class="text-center" style="color: #fff">
+          {{ object|yesno:"Update,Create" }} topic
+        </h3>
+        <form action="" id="contact-form" method="post" novalidate>
+          <div class="card-body">
+            {% csrf_token %}
+            {{ form|crispy }}
+            <div class="col-md-12">
+              <button type="submit" class="btn bg-gradient-dark w-100">
+                {{ object|yesno:"Update,Create" }}
+              </button>
             </div>
-          </form>
-        </div>
+          </div>
+        </form>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
 {% endblock %}
