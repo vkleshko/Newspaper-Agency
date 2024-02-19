@@ -178,7 +178,7 @@ class NewspapersDeleteView(LoginRequiredMixin, generic.DeleteView):
 
 
 class ToggleAssignToNewspaper(LoginRequiredMixin, View):
-    def get(self, request, pk):
+    def post(self, request, pk):
         redactor = Redactor.objects.get(id=request.user.id)
         newspaper = Newspaper.objects.get(id=pk)
 

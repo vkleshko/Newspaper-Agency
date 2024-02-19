@@ -9,6 +9,11 @@
           margin: 0;
       }
 
+
+
+
+
+
 </style>
 
 <div class="container">
@@ -50,33 +55,34 @@
       <div class="col-lg-6 mt-lg-0 mt-5 ps-lg-0 ps-0">
         <h5 style="color: #fff">
           Redactors
-          {% if not newspaper in user.newspapers.all %}
-          <button type="button" class="btn bg-gradient-light w-auto me-1 mb-0" style="float: right">
-            <a href="{% url 'newspaper_agency:toggle-assign-to-newspaper' pk=newspaper.id %}">
+          {% if newspaper not in user.newspapers.all %}
+          <form method="post" action="{% url 'newspaper_agency:toggle-assign-to-newspaper' pk=newspaper.pk %}">
+            {% csrf_token %}
+            <button type="submit" class="btn bg-gradient-light w-auto me-1 mb-0" style="float: right">
               Assign me to this newspaper
-            </a>
-          </button>
+            </button>
+          </form>
           {% else %}
-          <button type="button" class="btn bg-gradient-light w-auto me-1 mb-0" style="float: right">
-            <a href="{% url 'newspaper_agency:toggle-assign-to-newspaper' pk=newspaper.id %}">
+          <form method="post" action="{% url 'newspaper_agency:toggle-assign-to-newspaper' pk=newspaper.id %}">
+            {% csrf_token %}
+            <button type="submit" class="btn bg-gradient-light w-auto me-1 mb-0" style="float: right">
               Delete me from this newspaper
-            </a>
-          </button>
+            </button>
+          </form>
           {% endif %}
         </h5>
         {% for publisher in newspaper.publishers.all %}
         <div class="p-1 info-horizontal">
           <div class="description ps-3">
             <p class="mb-0">
-              <a href="{% url 'newspaper_agency:redactor-detail' pk=publisher.id %}"
-                 style="color: #fff"
-              >
+              <a href="{% url 'newspaper_agency:redactor-detail' pk=publisher.id %}" style="color: #fff">
                 <strong>{{ publisher.username }}</strong></a>
               <strong>{{ publisher.first_name }} {{ publisher.last_name }}</strong>
             </p>
           </div>
         </div>
       </div>
+
 
       {% empty %}
       <p>No Redactors</p>
