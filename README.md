@@ -1,4 +1,4 @@
-# Newspaper-Agency
+# Publisher Insight
 
 You are the head of a newspaper agency. And you work with a great team of editors. But you are not properly tracking the newspapers your agency publishes. That is why a tracking system for Redactors assigned to Newspapers was created. With it you will always know, who were the publishers of each Newspaper.
 
